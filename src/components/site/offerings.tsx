@@ -23,7 +23,7 @@ export default function Offerings() {
           {offerings.map((o, i) => (
             <Reveal key={o.title} delay={i * 120}>
               <div className={o.muted ? "lg:pl-10" : ""}>
-                <p className="text-[13px] text-stone-500">{o.badge}</p>
+                <p className={`text-[13px] ${o.muted ? "text-stone-500" : "text-green-500"}`}>{o.badge}</p>
                 <h3
                   className="mt-4 text-[32px] leading-tight tracking-[-0.01em] text-stone-200 sm:text-[40px]"
                   style={{ fontFamily: "var(--font-serif-display), serif", fontWeight: 300 }}

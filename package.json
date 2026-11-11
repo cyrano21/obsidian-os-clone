@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3006 2>&1 | tee dev.log",
-    "build": "next build && cp -r .next/static .next/standalone/obsidian-os-clone/.next/ && cp -r public .next/standalone/obsidian-os-clone/",
-    "start": "PORT=3006 NODE_ENV=production bun .next/standalone/obsidian-os-clone/server.js 2>&1 | tee server.log",
+    "build": "next build && mkdir -p .next/standalone/.next .next/standalone/obsidian-os-clone/.next && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ ; cp -r .next/static .next/standalone/obsidian-os-clone/.next/ 2>/dev/null ; cp -r public .next/standalone/obsidian-os-clone/ 2>/dev/null ; true",
+    "start": "PORT=3006 NODE_ENV=production bun \"$( [ -f .next/standalone/obsidian-os-clone/server.js ] && echo .next/standalone/obsidian-os-clone/server.js || echo .next/standalone/server.js )\" 2>&1 | tee server.log",
     "lint": "eslint ."
   },
   "dependencies": {

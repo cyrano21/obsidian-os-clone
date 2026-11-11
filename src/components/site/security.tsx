@@ -2,34 +2,17 @@ import Reveal from "./reveal";
 
 const cards = [
   {
-    icon: (
-      <>
-        <rect x="4" y="7" width="16" height="13" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M8 7 V5.5 A4 4 0 0 1 16 5.5 V7" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="12" cy="13.5" r="1.6" fill="currentColor" />
-      </>
-    ),
+    icon: "/orig/icon-industry-standards.svg",
     title: "Built to industry standards",
     body: "SOC 2 Type 2 and ISO 27001 certified. FCA authorisation in progress.",
   },
   {
-    icon: (
-      <>
-        <rect x="3.5" y="3.5" width="17" height="17" rx="3.5" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M12 10.2 V12 L13.2 13" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      </>
-    ),
+    icon: "/orig/icon-security.svg",
     title: "Security by default",
     body: "Two-factor authentication for every user.",
   },
   {
-    icon: (
-      <>
-        <path d="M12 3.5 C15 6.5, 17.5 9.5, 17.5 13 A5.5 5.5 0 0 1 6.5 13 C6.5 9.5, 9 6.5, 12 3.5 Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        <path d="M9.5 13 A2.5 2.5 0 0 0 12 15.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      </>
-    ),
+    icon: "/orig/icon-zero-leakage.svg",
     title: "Zero data leakage",
     body: "Built in-house. Hosted entirely on Obsidian's infrastructure.",
   },
@@ -51,9 +34,8 @@ export default function Security() {
           {cards.map((c, i) => (
             <Reveal key={c.title} delay={i * 110}>
               <div className="h-full rounded-2xl bg-stone-700/[0.16] p-7 ring-1 ring-stone-100/[0.07]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-stone-300">
-                  {c.icon}
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.icon} alt="" className="h-7 w-7" />
                 <h3 className="mt-6 text-[17px] text-stone-100">{c.title}</h3>
                 <p className="mt-2.5 text-[14px] leading-relaxed text-stone-400">{c.body}</p>
               </div>

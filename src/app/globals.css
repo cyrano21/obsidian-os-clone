@@ -29,7 +29,26 @@ body {
   background: rgba(231, 229, 228, 0.2);
 }
 
-/* --- Apparition au scroll --- */
+/* --- Animations d'entrée du hero (réplique de hero-rise / hero-fade) --- */
+@keyframes hero-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.hero-word,
+.hero-fade {
+  opacity: 0;
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--hero-delay, 0s);
+}
+
+/* --- Apparition au scroll (sections basses) --- */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -42,91 +61,6 @@ body {
   transform: translateY(0);
 }
 
-/* --- Blobs organiques (section IA) --- */
-.organic-scene {
-  background:
-    radial-gradient(42% 55% at 38% 40%, rgba(244, 114, 32, 0.34) 0%, transparent 68%),
-    radial-gradient(60% 70% at 62% 68%, rgba(154, 52, 18, 0.30) 0%, transparent 70%),
-    radial-gradient(35% 42% at 55% 30%, rgba(250, 204, 21, 0.10) 0%, transparent 65%),
-    radial-gradient(120% 120% at 50% 120%, rgba(41, 24, 12, 0.9) 0%, transparent 60%),
-    #120b06;
-}
-
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(28px);
-  will-change: transform;
-}
-
-.blob-core {
-  background:
-    radial-gradient(closest-side at 42% 45%, #ffd9a8 0%, #f59e0b 42%, #c2410c 74%, transparent 100%);
-  opacity: 0.92;
-  animation: blob-morph 11s ease-in-out infinite alternate;
-}
-
-.blob-halo {
-  background: radial-gradient(closest-side, rgba(234, 88, 12, 0.5) 0%, rgba(154, 52, 18, 0.22) 55%, transparent 100%);
-  animation: blob-morph 13s ease-in-out infinite alternate-reverse;
-}
-
-.blob-ghost {
-  background: radial-gradient(closest-side, rgba(255, 237, 213, 0.55) 0%, rgba(251, 146, 60, 0.28) 45%, transparent 100%);
-  filter: blur(46px);
-  animation: blob-drift 9s ease-in-out infinite alternate;
-}
-
-@keyframes blob-morph {
-  0% {
-    transform: scale(1) translate(0, 0) rotate(0deg);
-    border-radius: 58% 42% 55% 45% / 52% 55% 45% 48%;
-  }
-  50% {
-    transform: scale(1.07) translate(2%, -3%) rotate(8deg);
-    border-radius: 44% 56% 40% 60% / 58% 44% 56% 42%;
-  }
-  100% {
-    transform: scale(0.96) translate(-2%, 2%) rotate(-6deg);
-    border-radius: 52% 48% 60% 40% / 45% 58% 42% 55%;
-  }
-}
-
-@keyframes blob-drift {
-  from {
-    transform: translate(-6%, -4%) scale(1);
-  }
-  to {
-    transform: translate(7%, 5%) scale(1.12);
-  }
-}
-
-/* --- Texture roche (sections custody / panels) --- */
-.rock-scene {
-  background:
-    radial-gradient(80% 60% at 78% 20%, rgba(78, 60, 46, 0.55) 0%, transparent 60%),
-    radial-gradient(60% 50% at 15% 85%, rgba(56, 42, 32, 0.6) 0%, transparent 65%),
-    linear-gradient(155deg, #191410 0%, #0a0705 55%, #050403 100%);
-  position: relative;
-}
-
-.rock-scene::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.2 0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* --- Halo lumineux du hero --- */
-.hero-glow {
-  background:
-    radial-gradient(52% 44% at 50% 30%, rgba(120, 84, 56, 0.16) 0%, transparent 70%),
-    radial-gradient(90% 60% at 50% 110%, rgba(38, 26, 18, 0.5) 0%, transparent 70%);
-}
-
 /* --- Verre dépoli des cartes UI --- */
 .glass {
   background: rgba(23, 19, 15, 0.55);
@@ -135,7 +69,20 @@ body {
   border: 1px solid rgba(231, 229, 228, 0.08);
 }
 
-/* --- Accordéon features --- */
+/* --- Carrousel d'accordéon : barre de progression --- */
+@keyframes acc-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.acc-progress {
+  transform-origin: left;
+  animation: acc-progress var(--acc-duration, 5s) linear forwards;
+}
+
 .acc-body {
   display: grid;
   grid-template-rows: 0fr;
@@ -148,16 +95,12 @@ body {
   overflow: hidden;
 }
 
-/* --- Waveforme recording --- */
-@keyframes wave {
-  0%, 100% { transform: scaleY(0.35); }
-  50% { transform: scaleY(1); }
-}
-.wave-bar {
-  transform-origin: center;
-  animation: wave 1.4s ease-in-out infinite;
+/* --- Transition douce des images du panneau produit --- */
+.panel-img {
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* --- Point d'enregistrement qui pulse --- */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
@@ -166,18 +109,26 @@ body {
   animation: pulse-dot 1.6s ease-in-out infinite;
 }
 
-/* --- Wordmark géant du footer --- */
-.giant-wordmark {
-  font-family: var(--font-serif-display), serif;
-  font-weight: 300;
-  font-size: clamp(120px, 24vw, 340px);
-  line-height: 0.78;
-  letter-spacing: -0.02em;
-  color: #16120e;
-  user-select: none;
+/* --- Halo lumineux du hero --- */
+.hero-glow {
+  background:
+    radial-gradient(52% 44% at 50% 30%, rgba(120, 84, 56, 0.16) 0%, transparent 70%),
+    radial-gradient(90% 60% at 50% 110%, rgba(38, 26, 18, 0.5) 0%, transparent 70%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { transition: none; opacity: 1; transform: none; }
-  .blob, .blob-core, .blob-halo, .blob-ghost, .wave-bar, .rec-dot { animation: none; }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hero-word,
+  .hero-fade {
+    animation: none;
+    opacity: 1;
+  }
+  .acc-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
 }

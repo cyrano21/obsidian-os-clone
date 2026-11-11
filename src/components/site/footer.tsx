@@ -16,23 +16,13 @@ const columns = [
   },
 ];
 
-const badges = ["GDPR", "AICPA SOC 2", "ISO 27001", "ISO 22301"];
-
-function Badge({ label }: { label: string }) {
-  const [top, bottom] = label === "AICPA SOC 2" ? ["AICPA", "SOC 2"] : label.split(" ");
-  return (
-    <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full text-center ring-1 ring-stone-100/15">
-      {bottom ? (
-        <>
-          <span className="text-[8.5px] uppercase tracking-wide text-stone-500">{top}</span>
-          <span className="text-[11px] font-medium leading-tight text-stone-300">{bottom}</span>
-        </>
-      ) : (
-        <span className="text-[10.5px] font-medium tracking-wide text-stone-300">{top}</span>
-      )}
-    </span>
-  );
-}
+const badges = [
+  { src: "/orig/badge-gdpr.svg", alt: "GDPR" },
+  { src: "/orig/badge-pentesting.svg", alt: "Pentesting" },
+  { src: "/orig/badge-soc2.svg", alt: "AICPA SOC 2" },
+  { src: "/orig/badge-iso-27001.svg", alt: "ISO 27001" },
+  { src: "/orig/badge-iso-22301.svg", alt: "ISO 22301" },
+];
 
 export default function Footer() {
   return (
@@ -46,12 +36,18 @@ export default function Footer() {
               with company number 16326982. Our office is located at Level 39, One Canada
               Square, Canary Wharf, London E14 5AB.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               {badges.map((b) => (
-                <Badge key={b} label={b} />
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img key={b.alt} src={b.src} alt={b.alt} className="h-14 w-auto" />
               ))}
             </div>
-            <p className="mt-10 max-w-md text-[12px] leading-relaxed text-stone-500">
+            <div className="mt-10 flex items-center gap-2.5">
+              <span className="text-[12.5px] text-stone-500">Powered by</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/orig/rockcore.svg" alt="RockCore" className="h-4 w-auto opacity-80" />
+            </div>
+            <p className="mt-6 max-w-md text-[12px] leading-relaxed text-stone-500">
               © 2026 Obsidian Technologies Limited. Obsidian &amp; RockCore are registered
               trademarks of Obsidian Technologies Limited.
             </p>
@@ -81,8 +77,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="pointer-events-none mt-20 select-none text-center" aria-hidden="true">
-        <span className="giant-wordmark inline-block translate-y-[12%]">obsidian</span>
+      <div className="pointer-events-none mt-20 select-none" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/orig/obsidian-watermark.svg"
+          alt=""
+          className="mx-auto block w-full min-w-[900px] max-w-[1600px] translate-y-[10%] opacity-90"
+        />
       </div>
     </footer>
   );
