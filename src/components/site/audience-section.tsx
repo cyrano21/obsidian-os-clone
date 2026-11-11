@@ -14,6 +14,7 @@ export default function AudienceSection({
   panelSide = "right",
   note,
   id,
+  pt = "pt-[100px]",
 }: {
   heading: ReactNode;
   title: string;
@@ -22,6 +23,7 @@ export default function AudienceSection({
   panelSide?: "left" | "right";
   note?: { title: string; body: string };
   id?: string;
+  pt?: string;
 }) {
   const [active, setActive] = useState(0);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -47,7 +49,7 @@ export default function AudienceSection({
   };
 
   const panel = (
-    <div className="relative aspect-[4/3.4] overflow-hidden rounded-2xl bg-[#0b0908] lg:aspect-auto lg:h-[560px]">
+    <div className="relative aspect-[4/3.4] overflow-hidden rounded-2xl bg-[#0b0908] lg:aspect-auto lg:h-[756px]">
       {items.map((f, i) => (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
@@ -113,15 +115,15 @@ export default function AudienceSection({
   );
 
   return (
-    <section id={id} className="relative pt-32">
+    <section id={id} className={`relative ${pt}`}>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <h2
-          className="max-w-2xl text-[36px] leading-[1.12] tracking-[-0.01em] text-stone-200 sm:text-[48px]"
+          className="max-w-[560px] text-[36px] leading-[1.2] tracking-[-0.01em] text-stone-200 sm:text-[48px]"
           style={{ fontFamily: "var(--font-serif-display), serif", fontWeight: 300 }}
         >
           {heading}
         </h2>
-        <div className="mt-14 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className={`mt-20 grid items-start gap-10 lg:gap-10 ${panelSide === "left" ? "lg:grid-cols-[3fr_1fr]" : "lg:grid-cols-[1fr_3fr]"}`}>
           <div className={panelSide === "left" ? "lg:order-1" : "lg:order-2"}>{panel}</div>
           <div className={`lg:sticky lg:top-28 ${panelSide === "left" ? "lg:order-2" : "lg:order-1"}`}>
             {list}

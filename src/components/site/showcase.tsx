@@ -2,7 +2,7 @@ import Reveal from "./reveal";
 
 export default function Showcase() {
   return (
-    <section id="offer" className="relative pt-24">
+    <section id="offer" className="relative pt-[52px]">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <Reveal>
           <h2
@@ -14,7 +14,7 @@ export default function Showcase() {
         </Reveal>
         <Reveal delay={120} className="mt-10 grid gap-4 lg:grid-cols-2">
           {/* Panneau AI Practice Management : blob + barre d'enregistrement */}
-          <div className="relative h-[420px] overflow-hidden rounded-2xl bg-black sm:h-[660px]">
+          <div className="relative h-[420px] overflow-hidden rounded-2xl bg-black sm:h-[560px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/orig/ai-practice-management-bg.webp"
@@ -30,7 +30,7 @@ export default function Showcase() {
           </div>
 
           {/* Panneau Custody & Execution : roche + carte de portefeuille */}
-          <div className="relative h-[420px] overflow-hidden rounded-2xl bg-black sm:h-[660px]">
+          <div className="relative h-[420px] overflow-hidden rounded-2xl bg-black sm:h-[560px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/orig/custody-execution.webp"

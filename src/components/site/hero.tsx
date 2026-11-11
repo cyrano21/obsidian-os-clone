@@ -193,10 +193,10 @@ const logos = ["blackrock", "revolut", "jpmorgan", "parmenion", "wise"];
 
 export default function Hero() {
   return (
-    <section className="hero-glow relative overflow-hidden pt-[172px]">
+    <section className="hero-glow relative overflow-hidden pt-[160px]">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <h1
-          className="mx-auto max-w-4xl text-center text-[44px] leading-[1.05] tracking-[-0.01em] text-stone-200 sm:text-[64px] lg:text-[80px]"
+          className="mx-auto max-w-[960px] text-center text-[44px] leading-[1.05] tracking-[-0.01em] text-stone-200 sm:text-[64px] lg:text-[86px] lg:leading-none"
           style={{ fontFamily: "var(--font-serif-display), serif", fontWeight: 300 }}
         >
           {TITLE_WORDS.map((w, i) => (
@@ -226,17 +226,17 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-fade mx-auto mt-20 max-w-6xl" style={{ ["--hero-delay" as string]: "1.05s" }}>
+        <div className="hero-fade mx-auto mt-12 max-w-6xl" style={{ ["--hero-delay" as string]: "1.05s" }}>
           <DashboardMockup />
         </div>
 
         <Reveal>
           <div className="mt-16 border-b border-stone-100/[0.08] pb-14 text-center">
             <p className="text-[13.5px] text-stone-500">Made by the people behind</p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {logos.map((l) => (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img key={l} src={`/orig/${l}.svg`} alt={l} className="h-5 max-w-[120px] object-contain opacity-95" />
+                <img key={l} src={`/orig/${l}.svg`} alt={l} className="h-5 max-w-[140px] object-contain opacity-95" />
               ))}
             </div>
           </div>

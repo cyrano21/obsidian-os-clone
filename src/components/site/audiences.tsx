@@ -85,6 +85,7 @@ export function FirmsSection() {
       subtitle="Spend less time on admin and more time delivering advice that matters."
       items={firmFeatures}
       panelSide="right"
+      pt="pt-[124px]"
     />
   );
 }
@@ -97,6 +98,7 @@ export function ConsolidatorsSection() {
       subtitle="Unify firms, data, and controls to scale faster – without operational drag."
       items={consolidatorFeatures}
       panelSide="left"
+      pt="pt-[109px]"
     />
   );
 }
