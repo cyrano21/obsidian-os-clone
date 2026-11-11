@@ -1,0 +1,27 @@
+{
+  "name": "obsidian-os-clone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3006 2>&1 | tee dev.log",
+    "build": "next build && cp -r .next/static .next/standalone/obsidian-os-clone/.next/ && cp -r public .next/standalone/obsidian-os-clone/",
+    "start": "PORT=3006 NODE_ENV=production bun .next/standalone/obsidian-os-clone/server.js 2>&1 | tee server.log",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "^16.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "@eslint/eslintrc": "^3",
+    "eslint-config-next": "^16.1.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
